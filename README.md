@@ -1,5 +1,9 @@
 # HybridRecommender — Julia Two-Stage Recommender System
 
+- **Author**: Aryanto
+- **Email**: aryanto.dandan@gmail.com
+- **Homepage**: https://masterofray.github.io
+
 A production-grade, memory-efficient hybrid recommender system built in Julia, combining **Collaborative Filtering** (Truncated SVD) with **Association Rule Mining** (FP-Growth) for real-time, session-aware recommendations.
 
 ---
@@ -25,29 +29,29 @@ A production-grade, memory-efficient hybrid recommender system built in Julia, c
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                   HybridRecommender Pipeline                     │
-│                                                                   │
+│                   HybridRecommender Pipeline                    │
+│                                                                 │
 │  ┌──────────────────────────────────────────────────────────┐   │
-│  │  STAGE 1 — Candidate Generation (Collaborative Filtering)  │   │
-│  │                                                            │   │
-│  │  train.csv ──► Sparse Matrix ──► Truncated SVD            │   │
-│  │                (user × item)      (d-dim latent space)     │   │
-│  │                                                            │   │
-│  │  Output: Top-100 candidates per user (CF score)           │   │
+│  │  STAGE 1 — Candidate Generation (Collaborative Filter)   │   │
+│  │                                                          │   │
+│  │  train.csv ──► Sparse Matrix ──► Truncated SVD           │   │
+│  │                (user × item)      (d-dim latent space)   │   │
+│  │                                                          │   │
+│  │  Output: Top-100 candidates per user (CF score)          │   │
 │  └──────────────────────────────────────────────────────────┘   │
-│                            │                                      │
-│                            ▼                                      │
+│                            │                                    │
+│                            ▼                                    │
 │  ┌──────────────────────────────────────────────────────────┐   │
-│  │  STAGE 2 — Precision Reranking (FP-Growth)                │   │
-│  │                                                            │   │
-│  │  Baskets ──► FP-Growth ──► Association Rules              │   │
-│  │  (orders)    mining        (antecedent → consequent)       │   │
-│  │                                                            │   │
+│  │  STAGE 2 — Precision Reranking (FP-Growth)               │   │
+│  │                                                          │   │
+│  │  Baskets ──► FP-Growth ──► Association Rules             │   │
+│  │  (orders)    mining        (antecedent → consequent)     │   │
+│  │                                                          │   │
 │  │  Score_final = Score_CF × (1 + Lift_FP)                  │   │
 │  └──────────────────────────────────────────────────────────┘   │
-│                            │                                      │
-│                            ▼                                      │
-│              Final Ranked Recommendations                         │
+│                            │                                    │
+│                            ▼                                    │
+│              Final Ranked Recommendations                       │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
